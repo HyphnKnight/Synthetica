@@ -1,0 +1,116 @@
+@import '_config';
+
+
+/* PopUp */
+
+.PopUp {
+  display : inline-block;
+
+  margin : 20px;
+
+  color : $cBackground;
+
+  &.state-wireframe {
+    border : 1px solid;
+    background-color : transparent !important;
+
+    @extend .Template-Urgency-Color;
+  }
+}
+
+.PopUp-Top {
+font-size: 14px;
+    line-height: 16px;
+    display: inline-block;
+    height: 16px;
+    margin-right: 6px;
+    padding-left: 3px;
+    vertical-align: top;
+
+  background-color : $cBlueDark;
+
+  @extend .Template-Urgency-BackgroundColor-Parent;
+
+  .PopUp.wireframe & {
+    border : 1px solid;
+    background-color : transparent !important;
+  }
+
+  &:nth-child(1) {
+    font-size : 12px;
+
+    width : 12px;
+    padding : 0;
+
+    cursor : pointer;
+    text-align : center;
+  }
+  &:nth-child(2) {
+    width : 24px;
+  }
+  &:nth-child(3) {
+    width : 48px;
+  }
+  &:nth-child(4) {
+    width : 96px;
+  }
+  &:nth-child(5) {
+    width : 192px;
+    margin-right : 0;
+  }
+}
+
+.PopUp-Content {
+  display : block;
+
+  width : 396px;
+  height : 192px;
+  margin-top : 3px;
+  padding : 12px;
+
+  @extend .Template-Urgency-BackgroundColor-Parent;
+
+  .PopUp.wireframe & {
+    border : 1px solid;
+    background-color : transparent !important;
+  }
+}
+
+/* Button */
+
+.Button {
+  font-family : 'hotel-solid';
+
+  display : inline-block;
+
+  cursor : pointer;
+
+  @extend .Template-Urgency-Color;
+
+  &::after,
+  &::before {
+    display : inline-block;
+
+    width : 3px;
+    height : 12px;
+
+    content : '';
+
+    border-right : 4px solid;
+    border-left : 4px solid;
+
+    @extend .Template-Urgency-Color;
+  }
+  &:after {
+    margin-left : 4px;
+  }
+  &:before {
+    margin-right : 4px;
+  }
+  &:active {
+    color : inherit;
+
+    @extend .Template-Urgency-BackgroundColor;
+    @extend .Template-UrgencyText-Color;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "AI",
+  "version": "0.0.0",
+  "description": "AI",
+  "main": "script.js",
+  "scripts": {
+    "dev": "node -e \"require( 'qk-pack' )( { source: './src', destination: './dist', entry: './app.js', minify: false, type: 'dev' } )\"",
+    "prod": "node -e \"require( 'qk-pack' )( { source: './src', destination: './dist', entry: './app.js', minify: true, type: 'run' } )\""
+  },
+  "author": "Rafe Lepre",
+  "license": "MIT",
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "lodash": "^4.16.2",
+    "lodash.memoize": "^4.1.1",
+    "qk-pack": "github:hyphnknight/qk-pack",
+    "react-lite": "^0.15.14",
+    "three": "^0.79.0"
+  }
+}

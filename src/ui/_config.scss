@@ -1,0 +1,173 @@
+/* COLORS */
+
+$cBackground : #1e1d1c;
+$cGrey : #e8e0dd;
+$cGreyDark : #655643;
+$cBlueDark : #1d7674;
+$cBlue : #78c0a8;
+$cBlueLight : #61d8d5;
+$cRedDark : #efa91b;
+$cRed : #f07818;
+$cRedLight : #ef1b1b;
+
+/* Urgency Coloring */
+
+.Template-Urgency-Color {
+
+  &.state-urgency-0 {
+    color : $cBackground;
+  }
+
+  &.state-urgency-1 {
+    color : $cBlueDark;
+  }
+
+  &.state-urgency-2 {
+    color : $cBlue;
+  }
+
+  &.state-urgency-3 {
+    color : $cBlueLight;
+  }
+
+  &.state-urgency-4 {
+    color : $cGreyDark;
+  }
+
+  &.state-urgency-5 {
+    color : $cGrey;
+  }
+
+  &.state-urgency-6 {
+    color : $cRedDark;
+  }
+
+  &.state-urgency-7 {
+    color : $cRed;
+  }
+
+  &.state-urgency-8 {
+    color : $cRedLight;
+  }
+
+}
+
+.Template-UrgencyText-Color {
+
+  &.state-urgencyText-0 {
+    color : $cBackground;
+  }
+
+  &.state-urgencyText-1 {
+    color : $cBlueDark;
+  }
+
+  &.state-urgencyText-2 {
+    color : $cBlue;
+  }
+
+  &.state-urgencyText-3 {
+    color : $cBlueLight;
+  }
+
+  &.state-urgencyText-4 {
+    color : $cGreyDark;
+  }
+
+  &.state-urgencyText-5 {
+    color : $cGrey;
+  }
+
+  &.state-urgencyText-6 {
+    color : $cRedDark;
+  }
+
+  &.state-urgencyText-7 {
+    color : $cRed;
+  }
+
+  &.state-urgencyText-8 {
+    color : $cRedLight;
+  }
+
+}
+
+.Template-Urgency-BackgroundColor {
+
+  &.state-urgency-0 {
+    background-color : $cBackground;
+  }
+
+  &.state-urgency-1 {
+    background-color : $cBlueDark;
+  }
+
+  &.state-urgency-2 {
+    background-color : $cBlue;
+  }
+
+  &.state-urgency-3 {
+    background-color : $cBlueLight;
+  }
+
+  &.state-urgency-4 {
+    background-color : $cGreyDark;
+  }
+
+  &.state-urgency-5 {
+    background-color : $cGrey;
+  }
+
+  &.state-urgency-6 {
+    background-color : $cRedDark;
+  }
+
+  &.state-urgency-7 {
+    background-color : $cRed;
+  }
+
+  &.state-urgency-8 {
+    background-color : $cRedLight;
+  }
+
+}
+
+
+.Template-Urgency-BackgroundColor-Parent {
+
+  &.state-urgency-0 > & {
+    background-color : $cBackground;
+  }
+
+  .state-urgency-1 > & {
+    background-color : $cBlueDark;
+  }
+
+  .state-urgency-2 > & {
+    background-color : $cBlue;
+  }
+
+  .state-urgency-3 > & {
+    background-color : $cBlueLight;
+  }
+
+  .state-urgency-4 > & {
+    background-color : $cGreyDark;
+  }
+
+  .state-urgency-5 > & {
+    background-color : $cGrey;
+  }
+
+  .state-urgency-6 > & {
+    background-color : $cRedDark;
+  }
+
+  .state-urgency-7 > & {
+    background-color : $cRed;
+  }
+
+  .state-urgency-8 > & {
+    background-color : $cRedLight;
+  }
+}

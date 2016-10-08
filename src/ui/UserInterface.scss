@@ -1,0 +1,50 @@
+@import '_config';
+
+* {
+  box-sizing : border-box;
+
+  transition : 0.25s ease transform, 0.25s ease opacity, 0.25s ease color;
+  user-select: none;
+  cursor: default;
+}
+
+html,
+body {
+  font-family : 'larabiefont', monospace;
+
+  top : 0;
+  left : 0;
+
+  width : 100%;
+  margin : 0;
+  padding : 0;
+
+  letter-spacing : 0.1em;
+
+  color : white;
+}
+
+html {
+  filter : sepia(33%);
+}
+
+canvas {
+  position : fixed;
+  z-index : -100;
+  top : 0;
+  left : 0;
+
+  margin : 0;
+  padding : 0;
+}
+
+.UserInterface,
+.UserInterface * {
+  z-index : 1;
+}
+
+
+
+svg {
+  display : none;
+}
