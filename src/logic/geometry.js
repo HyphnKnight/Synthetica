@@ -83,4 +83,77 @@ function createTankMesh() {
 
 }
 
-export { hexToHexOutline, hexToHexBackground, createTankMesh, hexOutlinesGeometries };
+function returnOne() {
+  return 1;
+}
+
+function createSphere( iter, func = returnOne ) {
+
+  const
+    geometry = new THREE.Geometry(),
+    vectors = [
+      new THREE.Vector3( 1, 0, 0 ),
+      new THREE.Vector3( 0, 1, 0 ),
+      new THREE.Vector3( 0, 0, 1 ),
+      new THREE.Vector3(-1, 0, 0 ),
+      new THREE.Vector3( 0,-1, 0 ),
+      new THREE.Vector3( 0, 0,-1 )
+    ],
+    faces = [ [
+      [ vectors[0], vectors[1], vectors[2] ],
+      [ vectors[4], vectors[0], vectors[2] ],
+      [ vectors[1], vectors[3], vectors[2] ],
+      [ vectors[3], vectors[4], vectors[2] ],
+      [ vectors[1], vectors[0], vectors[5] ],
+      [ vectors[0], vectors[4], vectors[5] ],
+      [ vectors[3], vectors[1], vectors[5] ],
+      [ vectors[4], vectors[3], vectors[5] ],
+    ] ];
+
+  for ( let i = 0; i < iter; ++i ) {
+
+    faces[ i + 1 ] = [];
+
+    faces[ i ].forEach( vecs => {
+
+      const
+        [ vecA, vecB, vecC ] = vecs,
+        vec1 = (new THREE.Vector3()).addVectors( vecA, vecB ).normalize(),
+        vec2 = (new THREE.Vector3()).addVectors( vecB, vecC ).normalize(),
+        vec3 = (new THREE.Vector3()).addVectors( vecC, vecA ).normalize();
+
+      faces[ i + 1 ].push( [ vecA, vec1, vec3 ] );
+      faces[ i + 1 ].push( [ vecB, vec2, vec1 ] );
+      faces[ i + 1 ].push( [ vecC, vec3, vec2 ] );
+      faces[ i + 1 ].push( [ vec1, vec2, vec3 ] );
+
+      vectors.push( vec1 );
+      vectors.push( vec2 );
+      vectors.push( vec3 );
+
+
+    } );
+
+  }
+
+  geometry.vertices = vectors.map( vec => vec.clone().setLength( func( vec ) ) );
+
+  geometry.faces = faces[ iter ].map( vecs => new THREE.Face3(
+    vectors.indexOf( vecs[0] ),
+    vectors.indexOf( vecs[1] ),
+    vectors.indexOf( vecs[2] )
+  ) );
+
+  geometry.computeBoundingSphere();
+
+  return geometry;
+
+}
+
+export {
+  hexToHexOutline,
+  hexToHexBackground,
+  createTankMesh,
+  hexOutlinesGeometries,
+  createSphere
+};
