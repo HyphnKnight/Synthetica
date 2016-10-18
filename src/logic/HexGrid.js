@@ -277,39 +277,42 @@ function rayCast( heuristic, resistFunc, maxResist, hex, direction ) {
 
 function obstructedLineFromTo( priorityFunc, resistFunc, maxResist, startingHex, destinationHex ) {
 
-    startingHex.pathing.cameFrom = false;
-    startingHex.pathing.costSoFar = 0;
-    startingHex.pathing.priority = priorityFunc( startingHex, destinationHex );
+  if ( startingHex.id === destinationHex.id ) {
+    return [ startingHex ];
+  }
 
-    destinationHex.pathing.cameFrom = false;
+  startingHex.pathing.cameFrom = false;
+  startingHex.pathing.costSoFar = 0;
+  startingHex.pathing.priority = priorityFunc( startingHex, destinationHex );
 
-    let
-      hexes = [ startingHex ],
-      clearHexes = [],
-      rootHex;
+  destinationHex.pathing.cameFrom = false;
 
+  let
+    hexes = [ startingHex ],
+    clearHexes = [],
+    rootHex;
 
-    while ( !destinationHex.pathing.cameFrom ) {
+  while ( !destinationHex.pathing.cameFrom ) {
 
-      rootHex = hexes[ 0 ];
+    rootHex = hexes[ 0 ];
 
-      if ( rootHex.pathing.priority > maxResist ) {
-        return false;
-      }
-
-      hexes = chain( rootHex.neighbors )
-        .difference( hexes )
-        .map( evaluatePathIteration( resistFunc, priorityFunc, rootHex, destinationHex ) )
-        .concat( hexes )
-        .unique()
-        .sort( hex => hex.pathing.priority, false )
-        .value;
-
+    if ( rootHex.pathing.priority > maxResist ) {
+      return false;
     }
 
-    const path = getHexPath( destinationHex );
+    hexes = chain( rootHex.neighbors )
+      .difference( hexes )
+      .map( evaluatePathIteration( resistFunc, priorityFunc, rootHex, destinationHex ) )
+      .concat( hexes )
+      .unique()
+      .sort( hex => hex.pathing.priority, false )
+      .value;
 
-    return path;
+  }
+
+  const path = getHexPath( destinationHex );
+
+  return path;
 
 }
 
