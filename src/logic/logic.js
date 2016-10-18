@@ -2,6 +2,9 @@ import HexGrid from './HexGrid';
 import THREE from 'three';
 import loop from './loop';
 import {
+  loadTexture
+} from './contentLoader'
+import {
   hexToHexOutline,
   hexToHexBackground,
   hexOutlinesGeometries
@@ -25,6 +28,7 @@ import {
   spiral,
   hover
 } from './intelligence';
+import generateSphere from './sphere';
 
 const
   mapSize = 14,
@@ -47,9 +51,6 @@ gameMap.hexes.forEach( hex => {
 
 } );
 
-materials.lineBlueDark.transparent = true;
-materials.lineBlueDark.opacity = 0;
-
 var geometry = new THREE.PlaneGeometry( gameMap.radius*4, gameMap.radius*4, gameMap.radius*8, gameMap.radius*8 );
 var smap = null;
 var bmap = null;
@@ -58,58 +59,30 @@ geometry.vertices.forEach( vert => {
   vert.z = pixelHeightCalculator( vert.x, vert.y );
 } )
 
-var loader = new THREE.TextureLoader();
+console.log( generateSphere( 3 ) );
 
-// load a resource
-loader.load(
-  // resource URL
-  require('../design/planetTexture.jpg'),
-  // Function when resource is loaded
-  function ( texture ) {
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set( 32,32 );
-    smap = texture;
-    if ( !!bmap ) {
-      renderNewScene();
-    }
-  }
-);
-
-loader.load(
-  // resource URL
-  require('../design/planetTexture_NRM.png'),
-  // Function when resource is loaded
-  function ( texture ) {
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set( 32,32 );
-    bmap = texture;
-    if ( !!smap ) {
-      renderNewScene();
-    }
-  }
-);
-
+/*
 function renderNewScene() {
   var material = new THREE.MeshPhongMaterial({
     normalMap   :  bmap,
     bumpMap     :  bmap,
     bumpScale   : 0.45,
-    map         :  smap
+    map         :  smap,
+    shading : THREE.FlatShading
   });
   var plane = new THREE.Mesh( geometry, material );
-  plane.position.z = -0.2;
+  var plane2 = new THREE.Mesh( geometry, materials.wireGreyDark );
+  plane.position.z = -0.1;
   plane.castShadow = true;
   plane.receiveShadow = true;
   scene.add( plane );
+  scene.add( plane2 );
   var directionalLight = new THREE.PointLight( 0xFFFFFF, 1, 100 );
   directionalLight.position.set( 10, 10, 10 );
   scene.add( directionalLight );
 
   renderScene();
 
-  /* Game Logic */
 
   const tank = createTank( gameMap, 0, 0 );
 
@@ -121,12 +94,13 @@ function renderNewScene() {
 
     if ( !!state.click && state.click !== oldState.click ) {
 
-      const clickedHexBodies = controlStatus.click.filter(
-        intersection => hexOutlinesGeometries.find( geo => geo === intersection.object )
-      );
+      const
+        planeIntersection = state.click.find( intersection => intersection.object === plane ),
+        { x, y } = planeIntersection.point,
+        hex = gameMap.getHexFromPixel( x, y );
 
-      if ( !!clickedHexBodies.length ) {
-        tankOrbit = obstructedLineTo( tank, clickedHexBodies[ 0 ].object.userData.hex, 5, true );
+      if ( !!hex ) {
+        tankOrbit = obstructedLineTo( tank, hex, 5, true );
       }
 
     }
@@ -171,3 +145,4 @@ function renderNewScene() {
 
   gameLoop();
 }
+*/
