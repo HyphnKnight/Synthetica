@@ -1,4 +1,4 @@
-import Store from '../util/store.js';
+import Store from '../util/store';
 import THREE from 'three';
 import { canvas, scene, camera } from './3dBase';
 
