@@ -11,7 +11,7 @@ function trigCalc( val, intense ) {
 }
 
 function heightCalculator( seed, number ) {
-  return seed.reduce( ( prev, curr ) => prev + trigCalc( number, curr ), 0 ) / scale * 4;
+  return seed.reduce( ( prev, curr ) => prev + trigCalc( number, curr ), 0 ) / scale;
 }
 
 function hexHeightCalculator( hex ) {
