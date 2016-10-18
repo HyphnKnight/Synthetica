@@ -1,6 +1,4 @@
-import THREE from 'three';
 import { fetchVector, releaseVector } from './Vector';
-import { materials } from './3dBase';
 import {
   heuristicFind,
   isUndefined
