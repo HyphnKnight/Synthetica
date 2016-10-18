@@ -7,7 +7,8 @@ import {
 import {
   hexToHexOutline,
   hexToHexBackground,
-  hexOutlinesGeometries
+  hexOutlinesGeometries,
+  createSphere
 } from './geometry';
 import {
   hexHeightCalculator,
@@ -35,7 +36,7 @@ const
   gameMap = new HexGrid( mapSize, hex => ( { height: hexHeightCalculator( hex ) } ) );
 
 /* Graphics */
-
+/*
 gameMap.hexes.forEach( hex => {
 
   hex.data.geometry = {
@@ -57,9 +58,28 @@ var bmap = null;
 
 geometry.vertices.forEach( vert => {
   vert.z = pixelHeightCalculator( vert.x, vert.y );
-} )
+} )*/
 
-console.log( generateSphere( 3 ) );
+var geometry = createSphere( 6,
+  vec => ( Math.sin( vec.x * 10 ) + Math.sin( vec.y * 10 ) + Math.sin( vec.z * 10 ) ) / 3 * 0.1 + 1
+);
+
+var material = new THREE.MeshPhongMaterial({
+  shading : THREE.FlatShading,
+  color: 0x0000ff
+});
+
+console.log( geometry );
+
+const testMesh = new THREE.Mesh( geometry, material );
+
+scene.add( testMesh );
+
+var directionalLight = new THREE.PointLight( 0xFFFFFF, 1, 100 );
+directionalLight.position.set( 10, 10, 10 );
+scene.add( directionalLight );
+
+
 
 /*
 function renderNewScene() {
@@ -106,43 +126,15 @@ function renderNewScene() {
     }
 
   } )
-
-  let gameLoop = loop( dT => {
-
-    if ( !!tankOrbit ) {
-
-      const
-        nextPosition = tankOrbit();
-
-      if ( !!nextPosition ) {
-
-        const
-          pixelPosition = nextPosition.pixel,
-          direction = new THREE.Vector3(
-            tank.data.mesh.position.x - pixelPosition[ 0 ],
-            tank.data.mesh.position.y - pixelPosition[ 1 ],
-            0
-          ).normalize();
-
-        tank.move(
-          direction.x,
-          direction.y,
-          dT
-        );
-
-      } else {
-
-        tankOrbit = null;
-
-      }
-
-    }
-
-    cameraControls( dT );
-    renderScene();
-
-  } );
-
-  gameLoop();
 }
 */
+
+let gameLoop = loop( dT => {
+  testMesh.rotation.z += dT * 0.01;
+
+  cameraControls( dT );
+  renderScene();
+
+} );
+
+gameLoop();
