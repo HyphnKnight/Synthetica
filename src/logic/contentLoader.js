@@ -39,7 +39,7 @@ function loadContent( loader ) {
 const
   //images
   imageLoader = new THREE.ImageLoader(),
-  loadImage = loadContent( imageLoader );
+  loadImage = loadContent( imageLoader ),
 
   //textures
   textureLoader = new THREE.TextureLoader(),
