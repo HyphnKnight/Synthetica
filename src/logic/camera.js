@@ -72,7 +72,7 @@ function cameraControls( dT ) {
     movement.addScaledVector( direction, -1 );
   }
 
-  if ( ctrl && cameraDistance >= 8 ) {
+  if ( ctrl && cameraDistance >= 3 ) {
     cameraDistance -= dT;
     movement.add( direction );
   }
