@@ -142,11 +142,11 @@ function memoize( func, keyFunc = JSON.stringify ) {
 /* Array Functions */
 
 function times( length, func = identity ) {
-  return ( new Array( length ).fill( 0 ) ).map( ( _, i ) => func( i, length ) );
+  return map( new Array( length ).fill( 0 ), ( _, i ) => func( i, length ) );
 }
 
 function difference( array, targetArray ) {
-  return array.filter( val => targetArray.indexOf( val ) === -1 );
+  return filter( array, val => targetArray.indexOf( val ) === -1 );
 }
 
 function flatten( array ) {
@@ -154,15 +154,15 @@ function flatten( array ) {
 }
 
 function unique( array ) {
-  return array.filter( ( value, index, self ) => self.indexOf( value ) === index );
+  return filter( array, ( value, index, self ) => self.indexOf( value ) === index );
 }
 
 function uniqueBy( array, func = identity ) {
-  return unique( array.map( value => func( value ) ) );
+  return unique( map( array, value => func( value ) ) );
 }
 
 function groupBy( array, func = identity ) {
-  return array.reduce( ( groupedResults, value ) => {
+  return reduce( array, ( groupedResults, value ) => {
     const key = func( value );
     if ( isArray( groupedResults[ key ] ) ) {
       groupedResults[ key ].push( value );
@@ -174,7 +174,7 @@ function groupBy( array, func = identity ) {
 }
 
 function invoke( array ) {
-  return array.map( func => {
+  return map( array, func => {
     func();
     return func;
   } );
@@ -345,7 +345,7 @@ function objectGet( obj, path ) {
 }
 
 function objectForEach( obj, func = identity ) {
-  Object.keys( obj ).forEach( key => func( obj[ key ] ) );
+  forEach( Object.keys( obj ), key => func( obj[ key ] ) );
   return obj;
 }
 
@@ -353,7 +353,7 @@ function objectMap( obj, func = identity ) {
 
   const newObj = {};
 
-  Object.keys( obj ).forEach( key => {
+  forEach( Object.keys( obj ), key => {
     newObj[ key ] = func( obj[ key ] )
   } );
 
@@ -373,7 +373,7 @@ function objectToArray( obj ) {
 
   const newArray = [];
 
-  Object.keys( obj ).forEach( key => newArray.push( obj[ key ] ) );
+  forEach( Object.keys( obj ), key => newArray.push( obj[ key ] ) );
 
   return newArray;
 
