@@ -7,12 +7,16 @@ import {
 import {
   hexToHexOutline,
   hexToHexBackground,
-  hexOutlinesGeometries,
-  createSphere
+  hexOutlinesGeometries
 } from './geometry';
 import {
+  createWorldGeometry,
+  loadWorldGeometry
+} from './world.js';
+import {
   hexHeightCalculator,
-  pixelHeightCalculator
+  pixelHeightCalculator,
+  vector3HeightCalculator
 } from './terrain';
 import {
   scene,
@@ -29,7 +33,6 @@ import {
   spiral,
   hover
 } from './intelligence';
-import generateSphere from './sphere';
 
 const
   mapSize = 14,
@@ -60,23 +63,18 @@ geometry.vertices.forEach( vert => {
   vert.z = pixelHeightCalculator( vert.x, vert.y );
 } )*/
 
-var geometry = createSphere( 6,
-  vec => ( Math.sin( vec.x * 10 ) + Math.sin( vec.y * 10 ) + Math.sin( vec.z * 10 ) ) / 3 * 0.1 + 1
-);
-
 var material = new THREE.MeshPhongMaterial({
-  shading : THREE.FlatShading,
-  color: 0x0000ff
+  shading : THREE.FlatShading
 });
 
-console.log( geometry );
+var geometry = loadWorldGeometry();
 
 const testMesh = new THREE.Mesh( geometry, material );
 
 scene.add( testMesh );
 
 var directionalLight = new THREE.PointLight( 0xFFFFFF, 1, 100 );
-directionalLight.position.set( 10, 10, 10 );
+directionalLight.position.set( -10, -10, 10 );
 scene.add( directionalLight );
 
 
@@ -130,7 +128,9 @@ function renderNewScene() {
 */
 
 let gameLoop = loop( dT => {
-  testMesh.rotation.z += dT * 0.01;
+  /*testMesh.rotation.x += dT * 0.005;
+  testMesh.rotation.y += dT * 0.005;*/
+  testMesh.rotation.z += dT * 0.005;
 
   cameraControls( dT );
   renderScene();
