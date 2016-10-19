@@ -67,7 +67,7 @@ var material = new THREE.MeshPhongMaterial({
   shading : THREE.FlatShading
 });
 
-var geometry = loadWorldGeometry();
+var geometry = createWorldGeometry();
 
 const testMesh = new THREE.Mesh( geometry, material );
 
@@ -128,8 +128,8 @@ function renderNewScene() {
 */
 
 let gameLoop = loop( dT => {
-  /*testMesh.rotation.x += dT * 0.005;
-  testMesh.rotation.y += dT * 0.005;*/
+  testMesh.rotation.x += dT * 0.005;
+  testMesh.rotation.y += dT * 0.005;
   testMesh.rotation.z += dT * 0.005;
 
   cameraControls( dT );
