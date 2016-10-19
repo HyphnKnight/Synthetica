@@ -134,4 +134,4 @@ document.addEventListener( 'mousedown', mouseDown, false );
 document.addEventListener( 'mouseup', mouseUp, false );
 
 
-export { controlStatus };
+export default controlStatus;
