@@ -87,15 +87,7 @@ function createTankMesh() {
 
 }
 
-function returnOne() {
-  return 1;
-}
-
-function identity( x ) {
-  return x;
-}
-
-function createSphere( iter, vertMod = returnOne, vertsMod = identity ) {
+function createSphere( iter ) {
 
   const
     geometry = new THREE.Geometry(),
