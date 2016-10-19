@@ -200,6 +200,26 @@ function filter( array, func = identity ) {
 
 }
 
+function indexOf( array, value ) {
+
+  const arrayLength = array.length;
+
+  let result = -1;
+
+  for ( let i = 0; i < arrayLength; ++i ) {
+
+    if ( array[i] === value ) {
+
+      return i;
+
+    }
+
+  }
+
+  return result;
+
+}
+
 function reduce( array, func, initial = 0 ) {
 
   const arrayLength = array.length;
@@ -464,6 +484,7 @@ export {
   invoke,
   sort,
   map,
+  indexOf,
   forEach,
   heuristicFind,
   chain,
