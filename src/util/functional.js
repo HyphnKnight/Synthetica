@@ -184,8 +184,34 @@ function filter( array, func = identity ) {
   return array.filter( func );
 }
 
+function forEach( array, func ) {
+
+  const arrayLength = array.length;
+
+  for ( let index = 0; index < arrayLength; ++index ) {
+
+    func( array[ index ], index, array );
+
+  }
+
+  return Array.from( array );
+
+}
+
 function map( array, func = identity ) {
-  return array.map( func );
+
+  const
+    arrayLength = array.length,
+    result = [];
+
+  for ( let index = 0; index < arrayLength; ++index ) {
+
+    result[index] = func( array[ index ], index, array );
+
+  }
+
+  return result;
+
 }
 
 function concat( ...arrays ) {
@@ -405,6 +431,8 @@ export {
   groupBy,
   invoke,
   sort,
+  map,
+  forEach,
   heuristicFind,
   chain,
 
