@@ -3,8 +3,9 @@
 import React from 'react-lite';
 import ReactDom from 'react-lite';
 
+import main from './logic/main.js';
 import UserInterface from './ui/UserInterface.jsx';
 
-//ReactDom.render( React.createElement( UserInterface, {} ), document.getElementById( 'root' ) );
+ReactDom.render( React.createElement( UserInterface, {} ), document.getElementById( 'root' ) );
 
-import {} from './logic/logic.js';
+main();
