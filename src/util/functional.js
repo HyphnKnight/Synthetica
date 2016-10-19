@@ -181,7 +181,23 @@ function invoke( array ) {
 }
 
 function filter( array, func = identity ) {
-  return array.filter( func );
+
+  const
+    arrayLength = array.length,
+    result = [];
+
+  for ( let index = 0; index < arrayLength; ++index ) {
+
+    if ( !!func( array[ index ], index, array ) ) {
+
+      result.push( array[ index ] );
+
+    }
+
+  }
+
+  return result;
+
 }
 
 function reduce( array, func, initial = 0 ) {
