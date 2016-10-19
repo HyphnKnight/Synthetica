@@ -184,6 +184,22 @@ function filter( array, func = identity ) {
   return array.filter( func );
 }
 
+function reduce( array, func, initial = 0 ) {
+
+  const arrayLength = array.length;
+
+  let result = initial;
+
+  for ( let index = 0; index < arrayLength; ++index ) {
+
+    result = func( result, array[ index ], index, array );
+
+  }
+
+  return result
+
+}
+
 function forEach( array, func ) {
 
   const arrayLength = array.length;
