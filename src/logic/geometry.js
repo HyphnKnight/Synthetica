@@ -2,7 +2,9 @@ import THREE from 'three';
 import { materials } from './3dBase.js';
 import {
   flatten,
-  uniqueBy
+  uniqueBy,
+  forEach,
+  indexOf
 } from '../util/functional';
 
 const
@@ -114,7 +116,7 @@ function createSphere( iter ) {
 
     faces[ i + 1 ] = [];
 
-    faces[ i ].forEach( vecs => {
+    forEach( faces[ i ], vecs => {
 
       const [ vecA, vecB, vecC ] = vecs;
 
@@ -123,19 +125,22 @@ function createSphere( iter ) {
         vec2 = (new THREE.Vector3()).addVectors( vecB, vecC ).normalize(),
         vec3 = (new THREE.Vector3()).addVectors( vecC, vecA ).normalize();
 
-      vec1 = vectors.find( vec => vec.equals( vec1 ) ) || vec1;
-      vec2 = vectors.find( vec => vec.equals( vec2 ) ) || vec2;
-      vec3 = vectors.find( vec => vec.equals( vec3 ) ) || vec3;
+      vec1 = find( vectors, vec => vec.equals( vec1 ) ) || vec1;
+      vec2 = find( vectors, vec => vec.equals( vec2 ) ) || vec2;
+      vec3 = find( vectors, vec => vec.equals( vec3 ) ) || vec3;
 
-      faces[ i + 1 ].push( [ vecA, vec1, vec3 ] );
-      faces[ i + 1 ].push( [ vecB, vec2, vec1 ] );
-      faces[ i + 1 ].push( [ vecC, vec3, vec2 ] );
-      faces[ i + 1 ].push( [ vec1, vec2, vec3 ] );
+      faces[ i + 1 ].push(
+        [ vecA, vec1, vec3 ],
+        [ vecB, vec2, vec1 ],
+        [ vecC, vec3, vec2 ],
+        [ vec1, vec2, vec3 ]
+      );
 
-      vectors.push( vec1 );
-      vectors.push( vec2 );
-      vectors.push( vec3 );
-
+      vectors.push(
+        vec1,
+        vec2,
+        vec3
+      );
 
     } );
 
@@ -144,9 +149,9 @@ function createSphere( iter ) {
   geometry.vertices = uniqueBy( flatten( faces[ iter ] ) );
 
   geometry.faces = faces[ iter ].map( vecs => new THREE.Face3(
-    geometry.vertices.indexOf( vecs[0] ),
-    geometry.vertices.indexOf( vecs[1] ),
-    geometry.vertices.indexOf( vecs[2] )
+    indexOf( geometry.vertices, vecs[0] ),
+    indexOf( geometry.vertices, vecs[1] ),
+    indexOf( geometry.vertices, vecs[2] )
   ) );
 
   geometry.computeBoundingSphere();
