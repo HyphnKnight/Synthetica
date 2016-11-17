@@ -1,15 +1,11 @@
-import React from 'react-lite';
+import React from 'react';
 import Reflex from '../util/Reflex.jsx';
+
+import ui from '../data/ui';
 
 import { } from './UserInterface.scss';
 
-//import Menu   from './Menu/Menu.jsx';
-//import Cursor from './Cursor/Cursor.jsx';
-
-import {
-  Button,
-  PopUp
-} from './basic.jsx';
+import BehaviorEditor from './BehaviorEditor/BehaviorEditor.jsx';
 
 class UserInterface extends Reflex {
 
@@ -18,27 +14,26 @@ class UserInterface extends Reflex {
     super();
 
     this.state = {
-      menu: true,
-      tab: 'AI'
+      view: ui.view,
     };
 
   }
 
+  componentDidMount() {
+    ui.subscribe( state => this.setState( {
+      view: state.view
+    } ) );
+  }
+
   render() {
 
-    const
-      sampleButton = Button( () => this.setState( { menu: false } ), 'Do Something', {
-        urgency: 0,
-        urgencyText: 3
-      } ),
-      samplePopUp = PopUp( 'Sample PopUp', [ sampleButton ], {
-        urgency: 3,
-        close: () => console.log( 'close' )
-      } );
+    let clas = 'UserInterface';
 
-    return ( <section class={ 'UserInterface' + this.generateClasses( 'menu', 'tab' ) } >{
-      !!this.state.menu ? samplePopUp : ''
-    }</section> );
+    clas += ' state-view-' + this.state.view;
+
+    return ( <section class={ clas } >
+      <BehaviorEditor />
+    </section> );
 
   }
 

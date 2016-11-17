@@ -1,0 +1,83 @@
+# Gameplay
+
+Drag between tiles to generate trade routes, for example drag
+from a copper mine to a blacksmith and then a blacksmith to a
+fort to generate weapons.
+
+Create an army to send out to capture more territory, to get more resources
+
+
+
+
+# Crafting
+Units
+  recruits
+  recruits + swords = untrained swordsmen
+  recruits + swords + horses = calvary
+
+Weapon : handle + head
+
+hilt + blade = sword
+hilt + small blade = dagger
+hilt + hammer head = hammer
+pole + small blade = spear
+pole +
+
+weapons = {
+  blades: {
+    swords:
+    daggers: {
+
+    }
+  }
+  poles: {
+
+  }
+  blunt:
+  gunpowder:
+  blunt:
+
+}
+
+farmers can produce farms ->
+  food crop,
+  luxury crop,
+  food livestock,
+  horse livestock
+
+blacksmiths -> ( small - medium - large )
+  blade,
+  weight,
+  armor
+
+boyer ->
+  bows,
+  seige weapons
+
+
+engineer ->
+  road,
+  housing,
+  harbor,
+
+labor ->
+  miner ->
+    harvest metal,
+    harvest stone
+  lumberjack ->
+    harvest wood
+
+unit types
+ blacksmith
+ lumberjack
+ engineer
+ farmer
+ soldier
+ merchant
+ sailor,
+ miner
+
+
+tile types ->
+  military
+  economic tiles

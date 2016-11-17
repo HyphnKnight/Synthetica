@@ -1,4 +1,4 @@
-import React from 'react-lite';
+import React from 'react';
 import {
   isUndefined,
   isString,
@@ -19,12 +19,12 @@ class Reflex extends React.Component {
 
   shouldComponentUpdate( nextProps, nextState ) {
 
-    if ( !!objectFind( nextState, ( stateValue, stateName ) => isUndefined( this.state[stateName] ) ) ) {
+    if ( !!objectFind( nextState, ( stateValue, stateName ) => isUndefined( this.state[ stateName ] ) ) ) {
       throw 'Reflex - Attempting to set value of unregistered key.'
     }
 
-    return !!objectFind( nextProps, ( propValue, propName ) => !isEqual( this.props[propName], propsValue ) ) ||
-      !!objectFind( nextState, ( stateValue, stateName ) => !isEqual( this.state[stateName], stateValue ) );
+    return !!objectFind( nextProps, ( propValue, propName ) => !isEqual( this.props[ propName ], propValue ) ) ||
+      !!objectFind( nextState, ( stateValue, stateName ) => !isEqual( this.state[ stateName ], stateValue ) );
 
   }
 
@@ -34,7 +34,7 @@ class Reflex extends React.Component {
 
     propertyNames.forEach( name => {
 
-      if ( !isUndefined( this.state[ name ]) ) {
+      if ( !isUndefined( this.state[ name ] ) ) {
 
         if ( isBoolean( this.state[ name ] ) ) {
 

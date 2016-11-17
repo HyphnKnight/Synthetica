@@ -1,7 +1,9 @@
-import React from 'react-lite';
+import React from 'react';
 import Reflex from '../../util/Reflex.jsx';
+import ui from '../../data/ui';
 
 import { } from './Menu.scss';
+
 
 class Menu extends Reflex {
 
@@ -17,11 +19,7 @@ class Menu extends Reflex {
   }
 
   render() {
-    return ( <section class={ 'Menu' + this.generateClasses( [ 'open' ] ) } >
-      <nav>
-        <a>Diagnostics</a>
-        <a>Intelligence Architect</a>
-      </nav>
+    return ( <section class={ 'Menu' + this.generateClasses( 'open' ) } >
     </section> );
   }
 

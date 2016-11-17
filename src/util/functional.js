@@ -145,6 +145,42 @@ function times( length, func = identity ) {
   return map( new Array( length ).fill( 0 ), ( _, i ) => func( i, length ) );
 }
 
+function move( array, from, to ) {
+
+  const
+    result = [],
+    arrayLength = array.length;
+
+  let mod = 0;
+
+  for ( let i = 0; i < arrayLength; ++i ) {
+
+    if ( i === from ) {
+
+      result[ to ] = array[ i ];
+
+    } else {
+
+      if ( i > from && i > to ) {
+        mod = -0;
+      } else if ( i > from ) {
+        mod = -1;
+      } else if ( i >= to ) {
+        mod = 1;
+      } else {
+        mod = 0;
+      }
+
+      result[ i + mod ] = array[ i ];
+
+    }
+
+  }
+
+  return result;
+
+}
+
 function difference( array, targetArray ) {
   return filter( array, val => targetArray.indexOf( val ) === -1 );
 }
@@ -208,7 +244,7 @@ function indexOf( array, value ) {
 
   for ( let i = 0; i < arrayLength; ++i ) {
 
-    if ( array[i] === value ) {
+    if ( array[ i ] === value ) {
 
       return i;
 
@@ -258,7 +294,7 @@ function map( array, func = identity ) {
 
   for ( let index = 0; index < arrayLength; ++index ) {
 
-    result[index] = func( array[ index ], index, array );
+    result[ index ] = func( array[ index ], index, array );
 
   }
 
@@ -289,6 +325,7 @@ function sort( array, func = identity, ascending = true ) {
   }
 
   return Array.from( array ).sort( sortFunc );
+
 }
 
 function reverse( array ) {
@@ -476,6 +513,7 @@ export {
 
   // Arrays
   times,
+  move,
   difference,
   unique,
   uniqueBy,

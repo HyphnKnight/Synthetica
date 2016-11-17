@@ -1,0 +1,105 @@
+Types
+function, f
+procedure, p
+number, n
+boolean, b
+string, s
+array, a
+
+
+Vector #make ( x:n, y:n ) {
+
+  #results : x, y
+}
+
+#pos : Vector( 1, 2 );
+
+pos.x
+pos.y;
+
+addVectors #proc ( a:Vector, b:Vector ) {
+  #result Vector( a.x+b.x, a.x+b.x );
+}
+
+#sync addVectors( a, v );
+
+getAvailableLocation #async ( base:s, api:s ) {
+  #result : fetch( base + api )
+}
+
+add #proc:num ( x:n, y:n ) {
+
+  #result : x + y
+
+}
+
+forEach #func ( array:[?], fnc:f ) {
+  #loop( #iter {
+    func( array[ index ], index, array )
+  }, array.length - 1 )
+}
+
+map #func ( array:[?], fnc:f ) {
+  #result : #loop({
+    #result : fnc( array[index], index, array )
+  }, array.length - 1 )
+}
+
+reduce #proc:? ( array:[?], prc:p, start:? ) {
+
+  #result : start
+
+  #loop( {
+    result : prc( result, array[index], array )
+  }, array.length - 1 )
+
+}
+
+reduce #proc:? ( array:[?], prc:p, start:? ) {
+
+  #result : start
+
+  #loop( {
+    result : prc( result, array[index], array )
+  }, array.length - 1 )
+
+}
+
+document.workers
+
+document.onload( function() {
+
+  let reduceNumbers: curry( reduce, array );
+  let reduceByDivide: curry( reduce, false, function( val, num ){
+    return val / num;
+  } );
+
+})
+
+#init {
+
+  #syn {
+    //somestuff
+  }
+
+  @reduceNumbers: ~reduce( array )
+  @reduceByDivide: ~reduce( , #proc( val, num ) {
+    #result val / num
+  } );
+
+  #if( window.location.url.search( 'text' ) ) {
+    #newHeader: <header>
+      <div>SomeText<div>
+    </header>
+    #newDiv: <div></div>
+    #templateStr: ''
+    templatestr: 3 //error
+
+  } #else ( another condition ) {
+
+  } #else {
+
+  }
+
+
+}

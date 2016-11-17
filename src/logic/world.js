@@ -44,7 +44,7 @@ function createWorldGeometry() {
 
   forEach( randomVerts, vertData => {
     const { index, vec } = vertData;
-    console.log( vertData )
+
     vec.setLength( 1.1 );
     /*getAdjacentVectors( vertData.index, faceArrays )
       .map( vertIndex => vertices[ vertIndex ].setLength(1.2) );*/

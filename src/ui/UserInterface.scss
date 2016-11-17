@@ -1,11 +1,15 @@
 @import '_config';
 
-* {
+*,
+*:before,
+*:after {
+  font-size : 12px;
+
   box-sizing : border-box;
 
+  cursor : default;
+  user-select : none;
   transition : 0.25s ease transform, 0.25s ease opacity, 0.25s ease color;
-  user-select: none;
-  cursor: default;
 }
 
 html,
@@ -28,6 +32,10 @@ html {
   filter : sepia(33%);
 }
 
+body {
+  background-color : $cBackground;
+}
+
 canvas {
   position : fixed;
   z-index : -100;
@@ -38,12 +46,26 @@ canvas {
   padding : 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+ol,
+li {
+  display : block;
+
+  margin : 0;
+  padding : 0;
+
+  list-style : none;
+}
+
 .UserInterface,
 .UserInterface * {
   z-index : 1;
 }
-
-
 
 svg {
   display : none;

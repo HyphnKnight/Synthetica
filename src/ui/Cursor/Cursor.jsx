@@ -1,4 +1,4 @@
-import React from 'react-lite';
+import React from 'react';
 import Reflex from '../../util/Reflex.jsx';
 
 //import { } from './Menu.scss';

@@ -1,0 +1,22 @@
+@import '_config';
+
+.TextInput {
+  line-height : 2px;
+
+  display : inline-block;
+
+  padding : 8px 10px;
+
+  cursor : text;
+
+  color : inherit;
+  border : 1px solid;
+  outline : none;
+  background-color : transparent;
+  &.state-valid {
+    color : $cBlueLight;
+  }
+  &.state-empty {
+    color : $cRedLight;
+  }
+}

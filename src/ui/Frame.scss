@@ -1,0 +1,61 @@
+@import '_config';
+
+.Frame {
+  @extend .Template-urgency-color;
+  @for $i from 0 through 6 {
+    &.state-size-#{$i} {
+      $value : 16;
+      @for $num from 1 through ( $i + 1 ) {
+        $value : $value + exponent( 2, $num + 3 ) + 16;
+      }
+      width : #{$value}px;
+    }
+  }
+  &:hover {
+    z-index: 1000;
+  }
+}
+
+.Frame header {
+  color: inherit;
+}
+
+.Frame header div {
+  font-size : 12px;
+  line-height : 13px;
+
+  display : inline-block;
+
+  height : 16px;
+  margin-left : 16px;
+
+  text-align : center;
+  vertical-align : top;
+
+  border : 1px solid;
+  color: inherit;
+  &:first-child {
+    margin-left : 0;
+    cursor: pointer;
+  }
+  @for $i from 0 through 6 {
+    &:nth-child( #{$i} ) {
+      width : #{exponent( 2, $i + 2 )}px;
+    }
+  }
+}
+
+.Frame-Content {
+  width : 100%;
+
+  color : inherit;
+  & > * {
+    line-height : 12px;
+
+    margin-top : 8px;
+    padding : 8px;
+
+    color : inherit;
+    border : 1px solid;
+  }
+}

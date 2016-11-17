@@ -3,18 +3,34 @@
   "version": "0.0.0",
   "description": "AI",
   "main": "script.js",
+  "qk-pack": {
+    "default": {
+      "source": "./src",
+      "destination": "./dist",
+      "entry": [ "./app.js", "./sw.js" ],
+      "vendor": [
+        "three"
+      ]
+    },
+    "dev": {
+      "minify": false,
+      "server": {}
+    },
+    "prod": {
+      "minify": true
+    }
+  },
   "scripts": {
-    "dev": "node -e \"require( 'qk-pack' )( { source: './src', destination: './dist', entry: './app.js', minify: false, type: 'dev' } )\"",
-    "prod": "node -e \"require( 'qk-pack' )( { source: './src', destination: './dist', entry: './app.js', minify: true, type: 'run' } )\""
+    "dev": "node html.js && node -e \"require( 'qk-pack' )('dev')\"",
+    "prod": "node html.js && node -e \"require( 'qk-pack' )('prod')\""
   },
   "author": "Rafe Lepre",
   "license": "MIT",
   "dependencies": {
-    "immutable": "^3.8.1",
-    "lodash": "^4.16.2",
-    "lodash.memoize": "^4.1.1",
+    "pug": "^2.0.0-beta6",
     "qk-pack": "github:hyphnknight/qk-pack",
-    "react-lite": "^0.15.14",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "three": "^0.79.0"
   }
 }

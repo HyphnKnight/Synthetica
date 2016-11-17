@@ -1,0 +1,27 @@
+@import '../_config';
+
+.BehaviorEditor {
+  position : absolute;
+  top : 30px;
+  left : 30px;
+  .TextInput {
+    &.state-valid {
+      color : $cBlueLight;
+    }
+    &.state-empty {
+      color : $cRedLight;
+    }
+  }
+  .Button {
+    &.state-active:active {
+      color : $cBackground;
+      background-color : $cBlueDark;
+      &:before {
+        border-color : $cBlueDark;
+      }
+    }
+    &.state-disabled {
+      color : $cRedLight;
+    }
+  }
+}
